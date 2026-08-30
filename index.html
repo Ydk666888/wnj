@@ -314,6 +314,19 @@ html[data-theme="dark"] .moon-ic{display:none}
 .cert-cap{padding:.65rem .9rem;font-size:.83rem;font-weight:600}
 .cert-cap::before{content:"★ ";color:var(--gold)}
 .traits{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+
+/* ================= 兴趣爱好 ================= */
+.hobby-grid{display:grid;gap:1rem;grid-template-columns:1fr}
+.hobby-card{display:flex;flex-direction:column;padding:1.15rem 1.1rem;border-radius:var(--r);border:1px solid var(--line);
+  background:linear-gradient(160deg,var(--card),rgba(255,255,255,.02));
+  box-shadow:var(--shadow);transition:transform var(--dur) ease,box-shadow var(--dur) ease}
+.hobby-card:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--shadow-lg)}
+.hobby-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
+.hobby-name{font-weight:800;font-size:1.02rem}
+.hobby-cat{color:var(--muted);font-size:.72rem;font-family:var(--mono);letter-spacing:.12em;margin-top:.15rem}
+.hobby-desc{color:var(--muted);font-size:.87rem;line-height:1.65;margin:.2rem 0 .8rem}
+.hobby-card .bar{margin-top:auto}
+.hobby-card:hover .icon3d{transform:rotateX(-14deg) rotateY(12deg) translateZ(6px)}
 .trait{padding:.35rem .8rem;border-radius:999px;font-size:.8rem;font-weight:600;color:var(--muted);
   border:1px solid var(--line);background:var(--card);transition:all var(--dur) ease}
 .trait:hover{color:var(--p2);transform:translateY(-2px)}
@@ -357,6 +370,7 @@ footer .heart{color:var(--a2)}
   .hero-card{padding:2.1rem 2.2rem}
   .hl-grid{grid-template-columns:repeat(4,1fr)}
   .sk-grid{grid-template-columns:repeat(2,1fr)}
+  .hobby-grid{grid-template-columns:repeat(2,1fr)}
   .pr-grid{grid-template-columns:repeat(2,1fr)}
   .chart-grid{grid-template-columns:1fr 1fr}
 }
@@ -383,7 +397,7 @@ footer .heart{color:var(--a2)}
   section{padding:.55rem 0;break-inside:avoid}
   .hero{padding-top:.4rem}
   .tab-panel[hidden]{display:block!important}
-  .hero-card,.hl-card,.tl-item,.pr-card,.chart-card,.sk-card,.edu-card,.cert-fig{
+  .hero-card,.hl-card,.tl-item,.pr-card,.chart-card,.sk-card,.edu-card,.cert-fig,.hobby-card{
     box-shadow:none!important;border:1px solid #ddd!important;background:#fff!important;break-inside:avoid}
   .bar>i{width:var(--w,60%)!important}
   .bar-rect{transform:none!important}.line-path{stroke-dashoffset:0!important}
@@ -443,13 +457,13 @@ const resume = {
   nameEn: "WANG NANJUN",
   title: "海南大学 · 金融学专业 · 2026 级本科在读 · 共青团员",
   status: "申请意向：学生会 · 入党积极分子",
-  avatar: "微信图片_20260822230012_13_173.jpg",
+  avatar: "avatar.webp",
   summary: "海南大学金融学专业大一新生，共青团员。小学至高中十二年学生干部经历（班长 / 学生大队长 / 升旗手 / 社联干事），责任心强、善于沟通协作。对 AI 大模型有浓厚兴趣，熟练掌握提示词优化与 AI 工具运用，考取阿里达摩院初级、高级 AI 训练师证书；能独立制作高质量 PPT、搭建简易网站。自主阅读十余本经济与思维类著作，正逐步建立经济学思维，目标是打造「金融 + AI」的复合竞争力。",
   badges: ["金融学", "共青团员", "AI 训练师", "提示词工程", "PPT 设计", "简易建站", "12 年班干部", "篮球 / 户外"],
   contact: {
     emailUser: "wangnanjun",      // ← 替换为你的邮箱前缀
     emailDomain: "example.com",   // ← 替换为你的邮箱域名
-    location: "海南 · 海口"
+    location: "家乡安徽 · 现居海南海口"
   },
 
   /* 亮点成果（数字型自动滚动计数） */
@@ -549,14 +563,26 @@ const resume = {
       note: "国家「211 工程」与「双一流」建设高校。主修金融学，同时持续自学 AI 应用与前端知识，探索「金融 + AI」交叉方向，扎实学好专业课程、打造复合竞争力。" }
   ],
   certificates: [
-    { img: "屏幕截图 2026-08-15 115144.png", cap: "阿里达摩院 · AI 训练师认证（其一）" },
-    { img: "屏幕截图 2026-08-15 115313.png", cap: "阿里达摩院 · AI 训练师认证（其二）" }
+    { img: "cert-1.webp", cap: "阿里达摩院 · AI 训练师认证（其一）" },
+    { img: "cert-2.webp", cap: "阿里达摩院 · AI 训练师认证（其二）" }
+  ],
+
+  /* 兴趣爱好 */
+  hobbies: [
+    { icon: "sport", name: "篮球 / 球类运动", cat: "SPORTS", level: 90,
+      desc: "热爱篮球，各类球类运动均有涉猎。团队对抗中锻炼协作意识，也磨出了不错的抗压能力。" },
+    { icon: "out", name: "户外运动", cat: "OUTDOOR", level: 85,
+      desc: "经常参与户外运动，保持体能与积极心态，性格开朗，综合素质较全面。" },
+    { icon: "music", name: "音乐", cat: "MUSIC", level: 75,
+      desc: "喜爱音乐，懂得劳逸结合，为学习与生活调节节奏。" },
+    { icon: "ai", name: "AI 尝鲜", cat: "TECH", level: 88,
+      desc: "喜欢尝试各类 AI 模型与新工具，把技术当兴趣，也当生产力。" }
   ],
 
   traits: ["责任心强", "执行力好", "善于沟通协作", "自主学习意愿强", "乐于接受新技术", "踏实稳重", "抗压能力好", "劳逸结合"],
   goals: ["加入学生会，服务同学，锻炼组织协调能力", "大一递交入党申请书，争取成为入党积极分子", "深耕金融学 + AI，打造金融科技复合能力"],
   marquee: ["金融学 × AI", "FINANCE + TECH", "海南大学", "共青团员", "AI 训练师认证", "12 年学生干部", "经济学思维", "提示词工程", "篮球 · 户外 · 音乐"],
-  updatedAt: "2026-08-29"
+  updatedAt: "2026-08-30"
 };
 
 /* ================================================================
@@ -586,15 +612,18 @@ const ICONS = {
   ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>',
   doc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8M12 17v4"/></svg>',
   biz: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>',
-  web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M5 6.5h.01M8 6.5h.01"/></svg>'
+  web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M5 6.5h.01M8 6.5h.01"/></svg>',
+  sport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M6 6.5c3 2.6 5 5.4 5 5.5s2-2.9 5-5.5M4.5 13.5c3.6-.6 12.4-.6 15 0M11 12c-.3 2.8-.6 6.3-.3 8.3M13.3 20.3c.3-2 .1-5.5-.3-8.3"/></svg>',
+  out: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19l6.5-11 3.5 5.5 2-3 6 8.5z"/><circle cx="17.5" cy="6" r="2.5"/></svg>',
+  music: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2.5V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>'
 };
-const IC_CLS = { ai: "ic-cyan", lang: "ic-violet", doc: "ic-gold", biz: "ic-pink" };
+const IC_CLS = { ai: "ic-cyan", lang: "ic-violet", doc: "ic-gold", biz: "ic-pink", sport: "ic-gold", out: "ic-cyan", music: "ic-pink" };
 
 /* ================================================================
    渲染
    ================================================================ */
 const NAV_ITEMS = [["hero", "首页"], ["highlights", "亮点"], ["experience", "经历"],
-  ["projects", "项目"], ["charts", "数据"], ["skills", "技能"], ["education", "教育"]];
+  ["projects", "项目"], ["charts", "数据"], ["skills", "技能"], ["education", "教育"], ["hobbies", "兴趣"]];
 $("#navLinks").innerHTML = NAV_ITEMS.map(([id, t]) => `<a href="#${id}" data-anchor="${id}">${t}</a>`).join("");
 $("#year").textContent = new Date().getFullYear();
 $("#updated").textContent = resume.updatedAt;
@@ -914,6 +943,23 @@ if (has(resume.skills)) {
     });
     sec.appendChild(figs);
   }
+})();
+
+/* ---- 兴趣爱好 ---- */
+(function renderHobbies() {
+  if (!has(resume.hobbies)) return;
+  const sec = section("hobbies", "兴趣爱好", "// WORK HARD · PLAY HARD");
+  const grid = el("div", "hobby-grid");
+  resume.hobbies.forEach((h, i) => {
+    const c = el("div", "hobby-card reveal"); c.setAttribute("data-d", String(i % 4));
+    const lv = Math.max(5, Math.min(100, h.level || 70));
+    c.innerHTML = `<div class="hobby-top"><span class="icon3d ${IC_CLS[h.icon] || "ic-cyan"}">${ICONS[h.icon] || ICONS.ai}</span>
+      <div><div class="hobby-name">${esc(h.name)}</div><div class="hobby-cat">${esc(h.cat || "")}</div></div></div>
+      <p class="hobby-desc">${esc(h.desc || "")}</p>
+      <div class="bar"><i style="--w:${lv}%"></i></div>`;
+    grid.appendChild(c);
+  });
+  sec.appendChild(grid);
 })();
 
 /* ================================================================
